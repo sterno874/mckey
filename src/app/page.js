@@ -23,8 +23,12 @@ const STEPS = [
 
 const FAQS = [
   {
-    q: "Why not just intercept pastes into the agent?",
-    a: "We do that as a safety net — if someone still pastes a key into chat, MCKey can catch it and swap in a handle. But the real fix is making paste-into-chat unnecessary: tools get credentials at the gateway.",
+    q: "Is chat intercept fully safe?",
+    a: "No — and we’ll say so in-product. Intercept only helps if we catch the key before it hits the model. It’s better than pasting raw secrets to the AI, but it’s optional (toggle off anytime). The secure path is still vault → handle → gateway inject. If a key already went to the model, rotate it.",
+  },
+  {
+    q: "Can I turn intercept off?",
+    a: "Yes. Chat intercept is a toggleable safety net for the paste reflex. Some teams want it on by default; others prefer vault-only and will disable it.",
   },
   {
     q: "Does the agent ever see my Stripe or GitHub key?",
@@ -128,21 +132,28 @@ export default function Home() {
           <div className="grid items-center gap-10 lg:grid-cols-2">
             <div>
               <p className="text-sm font-semibold uppercase tracking-widest text-orange-500">
-                Safety net
+                Optional safety net
               </p>
               <h2 className="mt-2 text-3xl font-bold sm:text-4xl">
-                Still paste into chat? We catch it.
+                Chat intercept — on by default, toggle anytime.
               </h2>
               <p className="mt-4 text-lg leading-relaxed text-slate-600">
-                If a key-shaped string hits the agent input, MCKey can intercept, seal it in the
-                vault, and rewrite the message to a handle. Primary path should make that rare —
-                intercept is for the days you&apos;re moving too fast.
+                If a key-shaped string hits the agent input, MCKey can catch it before send, seal it
+                in the vault, and rewrite to a handle. Turn it off if you only want vault + gateway.
               </p>
+              <div className="mt-5 rounded-2xl border border-amber-200 bg-amber-50 px-4 py-4 text-sm leading-relaxed text-amber-950">
+                <p className="font-semibold">Not a guarantee — better than sharing with the AI.</p>
+                <p className="mt-1 text-amber-900/90">
+                  Intercept only helps if we stop the key <em>before</em> it reaches the model.
+                  It won&apos;t un-expose a secret that already shipped in a prompt. Prefer paste into
+                  the vault. If something slipped through, rotate.
+                </p>
+              </div>
               <ul className="mt-6 space-y-3 text-slate-700">
                 {[
-                  "Detect sk_live_, ghp_, xoxb-, AIza… shapes on paste",
-                  "One confirm → vaulted + swapped to mckey://…",
-                  "Agent prompt never contains the raw secret",
+                  "Toggle intercept on/off per workspace",
+                  "Detect sk_live_, ghp_, xoxb-, AIza… before send",
+                  "Confirm → vault + mckey:// rewrite (or send raw anyway)",
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-3">
                     <span className="mt-1 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-emerald-600 text-[10px] font-bold text-white">
@@ -153,18 +164,31 @@ export default function Home() {
                 ))}
               </ul>
             </div>
-            <div className="rounded-[1.5rem] border border-slate-200 bg-slate-900 p-6 text-slate-100 shadow-xl">
-              <pre className="overflow-x-auto text-sm leading-relaxed text-slate-300">
-{`# You type / paste into agent:
+            <div className="space-y-4">
+              <div className="flex items-center justify-between rounded-2xl border border-slate-200 bg-white px-4 py-3 shadow-sm">
+                <div>
+                  <div className="text-sm font-semibold text-slate-900">Chat secret intercept</div>
+                  <div className="text-xs text-slate-500">Catch key pastes before the model sees them</div>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-xs font-semibold uppercase tracking-wide text-emerald-700">On</span>
+                  <span className="relative h-7 w-12 rounded-full bg-emerald-600">
+                    <span className="absolute right-1 top-1 h-5 w-5 rounded-full bg-white shadow" />
+                  </span>
+                </div>
+              </div>
+              <div className="rounded-[1.5rem] border border-slate-200 bg-slate-900 p-6 text-slate-100 shadow-xl">
+                <pre className="overflow-x-auto text-sm leading-relaxed text-slate-300">
+{`# You paste into agent:
 "use sk_live_51Hq…"
 
-# MCKey rewrites before send:
+# Intercept (if enabled) rewrites:
 "use mckey://stripe"
 
-# Gateway on stripe.create_webhook:
-Authorization: Bearer sk_live_51Hq…
-# ↑ injected here — never in the model`}
-              </pre>
+# Already sent to the model?
+# → rotate. Intercept can't rewind.`}
+                </pre>
+              </div>
             </div>
           </div>
         </section>
@@ -186,7 +210,7 @@ Authorization: Bearer sk_live_51Hq…
               <div className="space-y-3 text-slate-700">
                 {[
                   "One-field vault paste with auto-naming",
-                  "Chat intercept demo (paste a key-looking string)",
+                  "Toggleable chat intercept + honest safety caveat",
                   "mckey:// handles instead of raw secrets",
                   "Allow / deny + inject audit trail",
                 ].map((item) => (

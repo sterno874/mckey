@@ -96,13 +96,14 @@ export default function Prototype() {
   const [chatDraft, setChatDraft] = useState(
     "here's the stripe key sk_live_51HqDemoDoNotUse123 set up webhooks"
   );
+  const [interceptEnabled, setInterceptEnabled] = useState(true);
   const [pendingIntercept, setPendingIntercept] = useState(null);
   const [sentMessages, setSentMessages] = useState([]);
   const [log, setLog] = useState([
     {
       id: 1,
       at: "just now",
-      text: "Prototype loaded — paste into the vault, or try dumping a key into the fake agent chat.",
+      text: "Prototype loaded — paste into the vault. Chat intercept is on (toggle anytime).",
     },
   ]);
 
@@ -182,6 +183,20 @@ export default function Prototype() {
 
   const scanChat = () => {
     const hits = findSecretsInText(chatDraft);
+    if (!interceptEnabled) {
+      setPendingIntercept(null);
+      const dangerous = hits.length > 0;
+      setSentMessages((prev) => [...prev, { role: "user", text: chatDraft, dangerous }]);
+      if (dangerous) {
+        pushLog(
+          `WARN — intercept off; ${hits.length} secret-shaped string(s) may have gone to the agent. Rotate if real.`
+        );
+      } else {
+        pushLog("Message sent — intercept off; no secret shapes detected.");
+      }
+      setChatDraft("");
+      return;
+    }
     if (!hits.length) {
       setPendingIntercept(null);
       setSentMessages((prev) => [...prev, { role: "user", text: chatDraft }]);
@@ -277,13 +292,53 @@ export default function Prototype() {
         </section>
 
         <section className="rounded-2xl border border-orange-200 bg-orange-50/40 p-5 shadow-sm">
-          <h2 className="font-[family-name:var(--font-display)] text-xl font-bold text-slate-900">
-            Fake agent chat — intercept demo
-          </h2>
-          <p className="mt-1 text-sm text-slate-600">
-            Try sending the prefilled message (or paste any sk_live_ / ghp_ string). We catch it
-            before the agent.
-          </p>
+          <div className="flex flex-wrap items-start justify-between gap-3">
+            <div>
+              <h2 className="font-[family-name:var(--font-display)] text-xl font-bold text-slate-900">
+                Fake agent chat — intercept
+              </h2>
+              <p className="mt-1 text-sm text-slate-600">
+                Optional safety net. Better than sharing with the AI — not a guarantee if the key
+                already left your machine.
+              </p>
+            </div>
+            <button
+              type="button"
+              role="switch"
+              aria-checked={interceptEnabled}
+              onClick={() => {
+                const next = !interceptEnabled;
+                setInterceptEnabled(next);
+                setPendingIntercept(null);
+                pushLog(
+                  next
+                    ? "Chat intercept enabled — key pastes will be caught before send."
+                    : "Chat intercept disabled — messages send as typed (vault + gateway still apply)."
+                );
+              }}
+              className="flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm font-semibold text-slate-800 shadow-sm"
+            >
+              <span className="text-xs uppercase tracking-wide text-slate-500">Intercept</span>
+              <span
+                className={`relative h-6 w-11 rounded-full transition ${
+                  interceptEnabled ? "bg-emerald-600" : "bg-slate-300"
+                }`}
+              >
+                <span
+                  className={`absolute top-0.5 h-5 w-5 rounded-full bg-white shadow transition ${
+                    interceptEnabled ? "right-0.5" : "left-0.5"
+                  }`}
+                />
+              </span>
+              <span className={interceptEnabled ? "text-emerald-700" : "text-slate-500"}>
+                {interceptEnabled ? "On" : "Off"}
+              </span>
+            </button>
+          </div>
+          <div className="mt-3 rounded-xl border border-amber-200 bg-amber-50 px-3 py-2 text-xs leading-relaxed text-amber-950">
+            Intercept only helps <strong>before</strong> send. It doesn&apos;t pull secrets out of
+            chats the model already saw — rotate those. Prefer pasting into the vault above.
+          </div>
 
           {sentMessages.length > 0 && (
             <div className="mt-4 max-h-40 space-y-2 overflow-y-auto">
