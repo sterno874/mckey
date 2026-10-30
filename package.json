@@ -2,22 +2,34 @@
   "name": "mckey",
   "version": "0.1.0",
   "private": true,
+  "description": "Local vault + MCP gateway so AI agents never see your API secrets",
+  "bin": {
+    "mckey": "./bin/mckey.mjs"
+  },
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "mckey": "node ./bin/mckey.mjs",
+    "mcp": "node ./bin/mckey.mjs mcp",
+    "test:vault": "node ./server/smoke-test.mjs"
   },
   "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.2",
+    "next": "15.5.28",
     "react": "19.1.0",
     "react-dom": "19.1.0",
-    "next": "15.5.28"
+    "zod": "^4.1.12"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
-    "tailwindcss": "^4",
     "eslint": "^9",
     "eslint-config-next": "15.5.28",
-    "@eslint/eslintrc": "^3"
+    "tailwindcss": "^4"
+  },
+  "engines": {
+    "node": ">=20"
   }
 }

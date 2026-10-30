@@ -12,24 +12,27 @@ export default function MarketingNav() {
             MCKey
           </span>
         </Link>
-        <nav className="hidden items-center gap-8 text-sm font-medium text-slate-700 md:flex">
-          <a href="#how" className="hover:text-slate-900">
-            How it works
-          </a>
-          <a href="#intercept" className="hover:text-slate-900">
-            Intercept
-          </a>
-          <a href="#prototype" className="hover:text-slate-900">
+        <nav className="hidden items-center gap-7 text-sm font-medium text-slate-700 md:flex">
+          <Link href="/install" className="hover:text-slate-900">
+            Install
+          </Link>
+          <Link href="/docs" className="hover:text-slate-900">
+            Docs
+          </Link>
+          <Link href="/security" className="hover:text-slate-900">
+            Security
+          </Link>
+          <Link href="/app" className="hover:text-slate-900">
             Prototype
-          </a>
+          </Link>
         </nav>
         <div className="flex items-center gap-3">
-          <Link href="/app" className="btn-secondary !px-4 !py-2 text-sm">
-            Open prototype
+          <Link href="/security" className="btn-secondary !px-4 !py-2 text-sm">
+            Whitepaper
           </Link>
-          <a href="#waitlist" className="btn-primary !px-4 !py-2 text-sm">
-            Join waitlist
-          </a>
+          <Link href="/install" className="btn-primary !px-4 !py-2 text-sm">
+            Install MCP
+          </Link>
         </div>
       </div>
     </header>

@@ -43,10 +43,15 @@ const FAQS = [
     a: "Model Context Protocol — how Cursor, Claude, and other clients connect tools. MCKey sits in front as the gateway that holds keys and enforces scope.",
   },
   {
+    q: "Does this work in Cursor / Claude Code?",
+    a: "Yes for the real path: local MCP gateway over stdio. npx mckey cursor-config --write / mckey claude-config. Chat intercept is optional and Cursor-shaped; Claude Code should seal via CLI. Read the security whitepaper for what’s safe vs at risk.",
+  },
+  {
     q: "Is this production-ready?",
-    a: "This is an early prototype. Try the paste → vault → intercept → inject flow in-browser. Hosted gateway + Cursor install comes next.",
+    a: "v0.1 local vault + MCP is usable for test keys and careful workflows. Read /security before production secrets. Hosted multi-tenant gateway is later.",
   },
 ];
+
 
 export default function Home() {
   return (
@@ -75,16 +80,16 @@ export default function Home() {
                 agent a handle, inject on the tool call.
               </p>
               <div className="flex flex-col items-center gap-3 sm:flex-row sm:justify-center lg:justify-start">
-                <Link href="/app" className="btn-primary w-full sm:w-auto">
-                  Try paste → vault → inject
+                <Link href="/install" className="btn-primary w-full sm:w-auto">
+                  Install for Cursor / Claude
                   <span aria-hidden>→</span>
                 </Link>
-                <a href="#waitlist" className="btn-secondary w-full sm:w-auto">
-                  Join the waitlist
-                </a>
+                <Link href="/security" className="btn-secondary w-full sm:w-auto">
+                  Security whitepaper
+                </Link>
               </div>
               <p className="text-sm text-slate-500">
-                Browser prototype. Intercept demo included. Free while we build.
+                Real local MCP gateway + vault. Open source. Test keys first.
               </p>
             </div>
             <div className="fade-up" style={{ animationDelay: "120ms" }}>
@@ -193,38 +198,81 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="prototype" className="border-y border-line bg-white">
+        <section id="docs" className="border-y border-line bg-white">
           <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
-            <div className="grid items-center gap-10 lg:grid-cols-2">
-              <div>
-                <h2 className="text-3xl font-bold sm:text-4xl">Feel it in the prototype.</h2>
-                <p className="mt-4 text-lg leading-relaxed text-slate-600">
-                  Quick-paste a fake key into the vault, try dumping one into the fake agent chat
-                  (we&apos;ll intercept), then run a tool call and watch injection — without the
-                  secret ever sitting in the prompt.
-                </p>
-                <Link href="/app" className="btn-primary mt-8">
-                  Launch prototype
+            <div className="mx-auto max-w-2xl text-center">
+              <h2 className="text-3xl font-bold sm:text-4xl">Whitepapers & technical detail</h2>
+              <p className="mt-3 text-lg text-slate-600">
+                What&apos;s safe, what&apos;s still at risk, and how to install the real MCP gateway.
+              </p>
+            </div>
+            <div className="mt-12 grid gap-6 md:grid-cols-3">
+              {[
+                {
+                  href: "/security",
+                  title: "Security whitepaper",
+                  body: "Threat model, safe vs at-risk surfaces, intercept caveats, recommendations.",
+                },
+                {
+                  href: "/docs",
+                  title: "Technical overview",
+                  body: "Vault crypto, MCP tools, what the model can see, trust boundaries.",
+                },
+                {
+                  href: "/install",
+                  title: "Install guide",
+                  body: "Cursor mcp.json, Claude Code config, seal/issue CLI, agent instructions.",
+                },
+              ].map((card) => (
+                <Link
+                  key={card.href}
+                  href={card.href}
+                  className="block rounded-2xl border border-slate-200 bg-slate-50 p-6 transition hover:border-orange-300 hover:bg-white"
+                >
+                  <h3 className="text-xl font-bold text-slate-900">{card.title}</h3>
+                  <p className="mt-2 text-slate-600">{card.body}</p>
+                  <span className="mt-4 inline-block text-sm font-semibold text-orange-600">Read →</span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="prototype" className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
+          <div className="grid items-center gap-10 lg:grid-cols-2">
+            <div>
+              <h2 className="text-3xl font-bold sm:text-4xl">Browser prototype + real CLI</h2>
+              <p className="mt-4 text-lg leading-relaxed text-slate-600">
+                Click through intercept in the browser, or run the real vault locally:{" "}
+                <code className="rounded bg-slate-100 px-1.5 py-0.5 text-sm">npx mckey init</code> then wire
+                Cursor / Claude Code.
+              </p>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <Link href="/install" className="btn-primary">
+                  Install MCP
+                </Link>
+                <Link href="/app" className="btn-secondary">
+                  Open prototype
                 </Link>
               </div>
-              <div className="space-y-3 text-slate-700">
-                {[
-                  "One-field vault paste with auto-naming",
-                  "Toggleable chat intercept + honest safety caveat",
-                  "mckey:// handles instead of raw secrets",
-                  "Allow / deny + inject audit trail",
-                ].map((item) => (
-                  <div
-                    key={item}
-                    className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3"
-                  >
-                    <span className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-slate-900 text-[11px] font-bold text-white">
-                      →
-                    </span>
-                    {item}
-                  </div>
-                ))}
-              </div>
+            </div>
+            <div className="space-y-3 text-slate-700">
+              {[
+                "AES-256-GCM vault in ~/.mckey",
+                "MCP tools: vault_list, vault_seal, http_request",
+                "Optional MCKey allowlists + TTL + revoke",
+                "Toggleable intercept preference (not a guarantee)",
+              ].map((item) => (
+                <div
+                  key={item}
+                  className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-white px-4 py-3"
+                >
+                  <span className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-slate-900 text-[11px] font-bold text-white">
+                    →
+                  </span>
+                  {item}
+                </div>
+              ))}
             </div>
           </div>
         </section>
