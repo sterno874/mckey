@@ -3,7 +3,8 @@ import Prototype from "../../components/Prototype";
 
 export const metadata = {
   title: "Prototype · MCKey",
-  description: "Interactive MCKey prototype — vault, agent permissions, and issued keys.",
+  description:
+    "Paste into the vault, intercept secrets in fake agent chat, issue an MCKey, watch gateway injection.",
 };
 
 export default function AppPage() {

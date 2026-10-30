@@ -10,7 +10,7 @@ export default function MarketingFooter() {
           </span>
           <div>
             <div className="font-[family-name:var(--font-display)] font-bold">MCKey</div>
-            <div className="text-sm text-slate-500">Keys for MCP agents</div>
+            <div className="text-sm text-slate-500">Paste into the vault, never the agent</div>
           </div>
         </div>
         <div className="flex gap-6 text-sm text-slate-600">

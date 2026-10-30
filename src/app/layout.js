@@ -14,14 +14,14 @@ const body = DM_Sans({
 });
 
 export const metadata = {
-  title: "MCKey — Keys for MCP agents, not raw secrets",
+  title: "MCKey — Paste secrets into the vault, never the agent",
   description:
-    "MCKey is the simple vault that issues short-lived, scoped keys to AI agents. Your master credentials never leave the vault.",
-  metadataBase: new URL("https://mckey.vercel.app"),
+    "Builders paste API keys into agents because it's fastest — then rotate. MCKey makes the safe path just as fast: vault once, give the agent a handle, inject on the tool call.",
+  metadataBase: new URL("https://sterno874.github.io/mckey"),
   openGraph: {
-    title: "MCKey — Keys for MCP agents",
+    title: "MCKey — Never paste keys into agents again",
     description:
-      "Stop pasting API keys into agents. Issue scoped, expiring MCKeys for every MCP tool call.",
+      "Vault once. Agent gets mckey:// handles. Gateway injects on MCP calls. Paste-intercept as the safety net.",
     siteName: "MCKey",
     type: "website",
   },

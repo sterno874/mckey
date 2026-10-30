@@ -16,11 +16,11 @@ export default function MarketingNav() {
           <a href="#how" className="hover:text-slate-900">
             How it works
           </a>
+          <a href="#intercept" className="hover:text-slate-900">
+            Intercept
+          </a>
           <a href="#prototype" className="hover:text-slate-900">
             Prototype
-          </a>
-          <a href="#faq" className="hover:text-slate-900">
-            FAQ
           </a>
         </nav>
         <div className="flex items-center gap-3">

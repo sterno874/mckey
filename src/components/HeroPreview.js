@@ -1,12 +1,5 @@
 "use client";
 
-const TOOLS = [
-  { name: "github.create_issue", allow: true },
-  { name: "stripe.refund", allow: false },
-  { name: "notion.write_page", allow: true },
-  { name: "slack.post_message", allow: true },
-];
-
 export default function HeroPreview() {
   return (
     <div className="relative mx-auto w-full max-w-xl">
@@ -15,59 +8,56 @@ export default function HeroPreview() {
         <div className="flex items-center justify-between border-b border-slate-100 px-5 py-3">
           <div className="flex items-center gap-2 text-sm font-semibold text-slate-900">
             <span className="h-2.5 w-2.5 rounded-full bg-emerald-500" />
-            agent · research-bot
+            Cursor · agent chat
           </div>
-          <span className="rounded-full bg-slate-900 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide text-white">
-            live
+          <span className="rounded-full bg-orange-100 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide text-orange-700">
+            intercepted
           </span>
         </div>
 
-        <div className="grid gap-4 p-5 sm:grid-cols-[1.1fr_0.9fr]">
-          <div>
-            <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-slate-500">
-              Issued MCKey
+        <div className="space-y-4 p-5">
+          <div className="rounded-xl border border-rose-100 bg-rose-50/80 px-3 py-3">
+            <p className="text-[11px] font-semibold uppercase tracking-wider text-rose-600">
+              Before · what people do today
             </p>
-            <div className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-3 font-mono text-sm text-slate-800">
-              mck_live_••••••••7f3c
-            </div>
-            <p className="mt-2 text-xs text-slate-500">Expires in 14m · 3 tools allowed</p>
-
-            <div className="mt-5 space-y-2">
-              {TOOLS.map((tool) => (
-                <div
-                  key={tool.name}
-                  className="flex items-center justify-between rounded-xl border border-slate-100 px-3 py-2 text-sm"
-                >
-                  <span className="font-mono text-slate-700">{tool.name}</span>
-                  <span
-                    className={`rounded-full px-2 py-0.5 text-[11px] font-semibold ${
-                      tool.allow ? "bg-emerald-50 text-emerald-700" : "bg-rose-50 text-rose-700"
-                    }`}
-                  >
-                    {tool.allow ? "allow" : "deny"}
-                  </span>
-                </div>
-              ))}
-            </div>
+            <p className="mt-2 font-mono text-sm leading-relaxed text-slate-700">
+              here&apos;s the stripe key{" "}
+              <span className="rounded bg-rose-200/70 px-1 line-through decoration-rose-500/80">
+                sk_live_51Hq…
+              </span>{" "}
+              set up webhooks
+            </p>
           </div>
 
-          <div className="rounded-xl bg-slate-900 p-4 text-slate-100">
-            <p className="text-xs font-semibold uppercase tracking-wider text-slate-400">Vault</p>
-            <div className="mt-3 space-y-3">
-              {[
-                ["GITHUB_TOKEN", "never leaves vault"],
-                ["STRIPE_SECRET", "never leaves vault"],
-                ["NOTION_KEY", "never leaves vault"],
-              ].map(([k, note]) => (
-                <div key={k}>
-                  <div className="font-mono text-sm text-orange-300">{k}</div>
-                  <div className="text-xs text-slate-400">{note}</div>
-                </div>
-              ))}
+          <div className="rounded-xl border border-emerald-200 bg-emerald-50 px-3 py-3">
+            <p className="text-[11px] font-semibold uppercase tracking-wider text-emerald-700">
+              After · MCKey
+            </p>
+            <p className="mt-2 font-mono text-sm leading-relaxed text-slate-800">
+              set up stripe webhooks with{" "}
+              <span className="rounded bg-emerald-200/80 px-1 font-semibold text-emerald-900">
+                mckey://stripe
+              </span>
+            </p>
+            <p className="mt-2 text-xs text-emerald-800/80">
+              Secret sealed in vault · agent never saw the key · gateway injects on tool call
+            </p>
+          </div>
+
+          <div className="grid gap-3 sm:grid-cols-2">
+            <div className="rounded-xl border border-slate-100 bg-slate-50 px-3 py-3">
+              <p className="text-[11px] font-semibold uppercase tracking-wider text-slate-500">
+                Vault
+              </p>
+              <p className="mt-2 font-mono text-sm text-slate-900">STRIPE_SECRET_KEY</p>
+              <p className="font-mono text-xs text-slate-500">sk_live_••••7f3c · sealed</p>
             </div>
-            <div className="mt-5 rounded-lg border border-white/10 bg-white/5 p-3 text-xs leading-relaxed text-slate-300">
-              Agent receives a short-lived MCKey. Master secrets stay sealed. Every tool call is
-              checked against the allowlist.
+            <div className="rounded-xl bg-slate-900 px-3 py-3 text-slate-100">
+              <p className="text-[11px] font-semibold uppercase tracking-wider text-slate-400">
+                Tool call
+              </p>
+              <p className="mt-2 font-mono text-sm text-orange-300">stripe.create_webhook</p>
+              <p className="mt-1 text-xs text-slate-400">ALLOW · injected once · not in prompt</p>
             </div>
           </div>
         </div>
