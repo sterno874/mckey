@@ -16,9 +16,9 @@ export default function MarketingNav() {
           <Link href="/install" className="hover:text-slate-900">
             Install
           </Link>
-          <a href="/#pricing" className="hover:text-slate-900">
+          <Link href="/#pricing" className="hover:text-slate-900">
             Pricing
-          </a>
+          </Link>
           <Link href="/security" className="hover:text-slate-900">
             Security
           </Link>
@@ -27,9 +27,9 @@ export default function MarketingNav() {
           </Link>
         </nav>
         <div className="flex items-center gap-3">
-          <a href="/#pricing" className="btn-secondary !px-4 !py-2 text-sm">
+          <Link href="/#pricing" className="btn-secondary !px-4 !py-2 text-sm">
             Pricing
-          </a>
+          </Link>
           <Link href="/install" className="btn-primary !px-4 !py-2 text-sm">
             Install free
           </Link>

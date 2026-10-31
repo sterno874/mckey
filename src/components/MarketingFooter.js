@@ -17,9 +17,9 @@ export default function MarketingFooter() {
           <Link href="/install" className="hover:text-slate-900">
             Install
           </Link>
-          <a href="/#pricing" className="hover:text-slate-900">
+          <Link href="/#pricing" className="hover:text-slate-900">
             Pricing
-          </a>
+          </Link>
           <Link href="/security" className="hover:text-slate-900">
             Security
           </Link>

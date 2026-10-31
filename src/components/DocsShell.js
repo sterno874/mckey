@@ -9,6 +9,9 @@ const NAV = [
   { href: "/#pricing", label: "Pricing" },
 ];
 
+// href="/#pricing" works with Next basePath via Link below
+
+
 export default function DocsShell({ title, subtitle, children }) {
   return (
     <div className="min-h-screen bg-[var(--bg)] text-slate-900">
