@@ -8,9 +8,11 @@
   },
   "scripts": {
     "dev": "next dev --turbopack",
+    "prebuild": "node ./scripts/generate-feeds.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "feeds": "node ./scripts/generate-feeds.mjs",
     "mckey": "node ./bin/mckey.mjs",
     "mcp": "node ./bin/mckey.mjs mcp",
     "test:vault": "node ./server/smoke-test.mjs"

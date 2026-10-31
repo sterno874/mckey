@@ -6,6 +6,8 @@ const NAV = [
   { href: "/docs", label: "Technical overview" },
   { href: "/security", label: "Security whitepaper" },
   { href: "/install", label: "Install (Cursor / Claude)" },
+  { href: "/blog", label: "Blog" },
+  { href: "/blog/connect-trendhopper", label: "Trendhopper connect" },
   { href: "/#pricing", label: "Pricing" },
 ];
 

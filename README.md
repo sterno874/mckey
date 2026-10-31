@@ -35,19 +35,28 @@ Then ask the agent to use MCKey MCP `http_request` with templated headers — no
 - `http_request` — inject `{{SECRET:NAME}}` or `{{mckey://handle}}`, redact response
 - `mckey_status` — policy + intercept caveat
 
-## Site / docs
+## Site / docs / blog
 
 ```bash
 npm run dev
 ```
 
 - Marketing: `/`
+- Blog: `/blog` · RSS: `/rss.xml` · Sitemap: `/sitemap.xml`
+- Trendhopper webhook (Vercel): `POST /api/trendhopper`
+- Connect guide: `/blog/connect-trendhopper`
 - Install: `/install`
 - Technical overview: `/docs`
 - Security whitepaper: `/security`
 - How it works (interactive): `/app`
 
 Live: [https://sterno874.github.io/mckey/](https://sterno874.github.io/mckey/)
+
+### Trendhopper
+
+1. Deploy to Vercel (API needs Node; Pages is static HTML only).
+2. Webhook URL: `https://<vercel>/api/trendhopper`
+3. Env: `TRENDHOPPER_WEBHOOK_SECRET`, optional `GITHUB_TOKEN` + `GITHUB_REPO` to commit posts into `content/blog/`.
 
 ## Security
 

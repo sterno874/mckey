@@ -1,0 +1,10 @@
+{
+  "slug": "why-agents-should-never-see-your-api-keys",
+  "title": "Why agents should never see your API keys",
+  "description": "Pasting sk_live_ into Cursor works — until you have to rotate. Here's the safer pattern: vault once, inject on the tool call.",
+  "date": "2026-10-30",
+  "author": "MCKey",
+  "tags": ["security", "mcp", "agents"],
+  "feature_image": null,
+  "html": "<p>Builders moving fast paste Stripe and GitHub keys into AI chats because it's the lowest-friction way to ship an integration. The agent helps. Then it says <em>rotate that key</em> — because the secret is now in model context, chat logs, and whoever retains prompts.</p><h2>The habit loop</h2><p>Paste → ship → rotate → update <code>.env</code> → paste again next sprint. Security theater with real blast radius.</p><h2>The MCKey pattern</h2><ol><li>Seal the secret once in a local or hosted vault.</li><li>Give the agent a handle (<code>mckey://stripe</code>) or an allowlisted MCKey.</li><li>On MCP tool calls, inject the real credential <strong>outside</strong> the model.</li></ol><p>Chat intercept is optional and better than sharing with the AI — not a guarantee. Prefer the vault path.</p><h2>Try it</h2><p>Install the local MCP gateway, seal a test key, and call <code>http_request</code> with <code>{{SECRET:STRIPE_SECRET_KEY}}</code>. The model never needs the value.</p>"
+}

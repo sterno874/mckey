@@ -14,6 +14,9 @@ export default function MarketingFooter() {
           </div>
         </div>
         <div className="flex flex-wrap gap-6 text-sm text-slate-600">
+          <Link href="/blog" className="hover:text-slate-900">
+            Blog
+          </Link>
           <Link href="/install" className="hover:text-slate-900">
             Install
           </Link>

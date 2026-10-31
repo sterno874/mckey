@@ -28,7 +28,12 @@ jobs:
         env:
           STATIC_EXPORT: "1"
           PAGES_BASE_PATH: /mckey
-        run: npm run build
+          SITE_URL: https://sterno874.github.io/mckey
+        run: |
+          # API routes are Vercel-only (Trendhopper webhook); static export cannot include them.
+          mv src/app/api /tmp/mckey-api-stash
+          npm run build
+          mv /tmp/mckey-api-stash src/app/api
       - uses: actions/upload-pages-artifact@v3
         with:
           path: out

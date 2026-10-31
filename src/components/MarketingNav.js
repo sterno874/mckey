@@ -13,14 +13,14 @@ export default function MarketingNav() {
           </span>
         </Link>
         <nav className="hidden items-center gap-7 text-sm font-medium text-slate-700 md:flex">
+          <Link href="/blog" className="hover:text-slate-900">
+            Blog
+          </Link>
           <Link href="/install" className="hover:text-slate-900">
             Install
           </Link>
           <Link href="/#pricing" className="hover:text-slate-900">
             Pricing
-          </Link>
-          <Link href="/security" className="hover:text-slate-900">
-            Security
           </Link>
           <Link href="/app" className="hover:text-slate-900">
             How it works

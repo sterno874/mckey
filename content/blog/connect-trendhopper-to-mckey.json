@@ -1,0 +1,10 @@
+{
+  "slug": "connect-trendhopper-to-mckey",
+  "title": "Connect Trendhopper to the MCKey blog",
+  "description": "Point a Trendhopper webhook at MCKey so published drafts become posts on this site — with RSS and sitemap ready for SEO.",
+  "date": "2026-10-30",
+  "author": "MCKey",
+  "tags": ["trendhopper", "publishing", "webhook"],
+  "feature_image": null,
+  "html": "<p>MCKey's marketing site ships a real blog at <code>/blog</code>, an RSS feed, and a sitemap so Trendhopper (and search engines) can discover posts.</p><h2>What Trendhopper sends</h2><p>On publish, Trendhopper POSTs a signed JSON body (event <code>post.published</code> or <code>post.updated</code>) with roughly:</p><pre><code>{\n  \"event\": \"post.published\",\n  \"id\": 123,\n  \"title\": \"Your post title\",\n  \"content\": \"&lt;p&gt;HTML body…&lt;/p&gt;\",\n  \"feature_image\": \"https://…\",\n  \"status\": \"published\",\n  \"meta_description\": \"…\"\n}</code></pre><p>Headers include <code>X-Trendhopper-Event</code> and <code>X-Trendhopper-Signature</code> (<code>t=…,v1=…</code> HMAC).</p><h2>Wire it up</h2><ol><li>Deploy MCKey to Vercel (API routes need a Node host — GitHub Pages is static-only).</li><li>In Trendhopper → Integrations → Webhook, set URL to <code>https://YOUR_DOMAIN/api/trendhopper</code>.</li><li>Copy the signing secret into Vercel env <code>TRENDHOPPER_WEBHOOK_SECRET</code>.</li><li>Optional: set <code>GITHUB_TOKEN</code> + <code>GITHUB_REPO=sterno874/mckey</code> so accepted posts are committed under <code>content/blog/</code> and Pages/Vercel redeploy.</li></ol><p>Connection tests send event <code>ping</code> — we answer <code>200</code> without creating a post.</p><h2>Without the API</h2><p>You can still drop JSON files into <code>content/blog/</code> manually or from CI. RSS at <code>/rss.xml</code> updates on the next build.</p>"
+}

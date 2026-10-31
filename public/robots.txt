@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sterno874.github.io/mckey/sitemap.xml

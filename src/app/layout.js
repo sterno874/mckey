@@ -14,6 +14,8 @@ export const metadata = {
   },
 };
 
+const base = process.env.PAGES_BASE_PATH || "";
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
@@ -25,6 +27,7 @@ export default function RootLayout({ children }) {
           href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Grotesk:wght@500;600;700&display=swap"
           rel="stylesheet"
         />
+        <link rel="alternate" type="application/rss+xml" title="MCKey Blog" href={`${base}/rss.xml`} />
       </head>
       <body className="antialiased">{children}</body>
     </html>
