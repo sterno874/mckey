@@ -335,7 +335,7 @@ export default function Home() {
             </form>
             <Link
               href="/app"
-              className="mt-6 inline-flex rounded-2xl border-2 border-white px-5 py-3 font-semibold text-white hover:bg-white/10"
+              className="mt-6 inline-flex rounded-2xl border-2 border-white bg-transparent px-5 py-3 font-semibold !text-white hover:bg-white/15"
             >
               How it works
             </Link>

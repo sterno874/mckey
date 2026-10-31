@@ -10,6 +10,7 @@ const TIERS = [
     cta: "Install free",
     href: "/install",
     featured: false,
+    ctaClass: "btn-dark w-full",
     features: [
       "Local AES-256-GCM vault (~/.mckey)",
       "Cursor + Claude Code MCP gateway",
@@ -27,6 +28,7 @@ const TIERS = [
     cta: "Join Pro waitlist",
     href: "/#waitlist",
     featured: false,
+    ctaClass: "btn-light w-full",
     features: [
       "Everything in Local",
       "Hosted vault sync (laptop ↔ CI)",
@@ -45,6 +47,7 @@ const TIERS = [
     cta: "Join Team waitlist",
     href: "/#waitlist",
     featured: true,
+    ctaClass: "btn-primary w-full !py-2.5 !text-sm",
     features: [
       "Everything in Pro",
       "Shared vault + per-agent MCKeys",
@@ -63,6 +66,7 @@ const TIERS = [
     cta: "Talk to us",
     href: "mailto:hello@mckey.io?subject=MCKey%20Enterprise",
     featured: false,
+    ctaClass: "btn-dark w-full",
     features: [
       "Everything in Team",
       "SAML SSO + SCIM",
@@ -78,8 +82,10 @@ export default function Pricing() {
     <section id="pricing" className="border-y border-line bg-white">
       <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
         <div className="mx-auto max-w-2xl text-center">
-          <p className="text-sm font-semibold uppercase tracking-widest text-orange-500">Pricing</p>
-          <h2 className="mt-2 text-3xl font-bold sm:text-4xl">Local free. Hosted when the team shows up.</h2>
+          <p className="text-sm font-semibold uppercase tracking-widest text-orange-600">Pricing</p>
+          <h2 className="mt-2 text-3xl font-bold text-slate-900 sm:text-4xl">
+            Local free. Hosted when the team shows up.
+          </h2>
           <p className="mt-3 text-lg text-slate-600">
             We don&apos;t tax curiosity. Charge for sync, seats, and agent controls — not for every
             tool call on your laptop.
@@ -92,8 +98,8 @@ export default function Pricing() {
               key={tier.id}
               className={`relative flex flex-col rounded-2xl border p-6 ${
                 tier.featured
-                  ? "border-orange-300 bg-slate-900 text-white shadow-xl shadow-orange-500/10 lg:-mt-2 lg:mb-0"
-                  : "border-slate-200 bg-slate-50 text-slate-900"
+                  ? "border-orange-400 bg-slate-900 text-white shadow-xl shadow-orange-500/10 lg:-mt-2"
+                  : "border-slate-200 bg-white text-slate-900 shadow-sm"
               }`}
             >
               {tier.featured ? (
@@ -101,27 +107,35 @@ export default function Pricing() {
                   Most teams
                 </span>
               ) : null}
-              <div className={`text-sm font-semibold ${tier.featured ? "text-orange-300" : "text-slate-500"}`}>
+              <div
+                className={`text-sm font-semibold ${tier.featured ? "text-orange-300" : "text-slate-600"}`}
+              >
                 {tier.name}
               </div>
               <div className="mt-3 flex items-baseline gap-1">
-                <span className="font-[family-name:var(--font-display)] text-4xl font-bold tracking-tight">
+                <span
+                  className={`font-[family-name:var(--font-display)] text-4xl font-bold tracking-tight ${
+                    tier.featured ? "text-white" : "text-slate-900"
+                  }`}
+                >
                   {tier.price}
                 </span>
                 {tier.period ? (
-                  <span className={`text-sm ${tier.featured ? "text-slate-400" : "text-slate-500"}`}>
+                  <span className={`text-sm ${tier.featured ? "text-slate-300" : "text-slate-600"}`}>
                     {tier.period}
                   </span>
                 ) : null}
               </div>
               {tier.note ? (
-                <p className={`mt-1 text-xs ${tier.featured ? "text-slate-400" : "text-slate-500"}`}>
+                <p className={`mt-1 text-xs ${tier.featured ? "text-slate-300" : "text-slate-500"}`}>
                   {tier.note}
                 </p>
               ) : (
-                <p className="mt-1 text-xs opacity-0">.</p>
+                <p className="mt-1 text-xs opacity-0" aria-hidden>
+                  .
+                </p>
               )}
-              <p className={`mt-4 text-sm leading-relaxed ${tier.featured ? "text-slate-300" : "text-slate-600"}`}>
+              <p className={`mt-4 text-sm leading-relaxed ${tier.featured ? "text-slate-200" : "text-slate-600"}`}>
                 {tier.blurb}
               </p>
               <ul className="mt-5 flex-1 space-y-2.5 text-sm">
@@ -129,37 +143,23 @@ export default function Pricing() {
                   <li key={f} className="flex gap-2">
                     <span
                       className={`mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[10px] font-bold ${
-                        tier.featured ? "bg-emerald-500/20 text-emerald-300" : "bg-emerald-100 text-emerald-700"
+                        tier.featured
+                          ? "bg-emerald-400/25 text-emerald-200"
+                          : "bg-emerald-100 text-emerald-800"
                       }`}
                     >
                       ✓
                     </span>
-                    <span className={tier.featured ? "text-slate-200" : "text-slate-700"}>{f}</span>
+                    <span className={tier.featured ? "text-slate-100" : "text-slate-800"}>{f}</span>
                   </li>
                 ))}
               </ul>
               {tier.href.startsWith("mailto:") ? (
-                <a
-                  href={tier.href}
-                  className={`mt-6 inline-flex items-center justify-center rounded-xl px-4 py-2.5 text-sm font-semibold ${
-                    tier.featured
-                      ? "bg-white text-slate-900"
-                      : "bg-slate-900 text-white"
-                  }`}
-                >
+                <a href={tier.href} className={`mt-6 ${tier.ctaClass}`}>
                   {tier.cta}
                 </a>
               ) : (
-                <Link
-                  href={tier.href}
-                  className={`mt-6 inline-flex items-center justify-center rounded-xl px-4 py-2.5 text-sm font-semibold ${
-                    tier.featured
-                      ? "bg-gradient-to-r from-orange-500 to-pink-500 text-white"
-                      : tier.id === "free"
-                        ? "bg-slate-900 text-white"
-                        : "border border-slate-300 bg-white text-slate-900"
-                  }`}
-                >
+                <Link href={tier.href} className={`mt-6 ${tier.ctaClass}`}>
                   {tier.cta}
                 </Link>
               )}
@@ -167,7 +167,7 @@ export default function Pricing() {
           ))}
         </div>
 
-        <div className="mx-auto mt-12 max-w-3xl rounded-2xl border border-slate-200 bg-slate-50 px-5 py-5 text-sm leading-relaxed text-slate-600">
+        <div className="mx-auto mt-12 max-w-3xl rounded-2xl border border-slate-200 bg-slate-50 px-5 py-5 text-sm leading-relaxed text-slate-700">
           <p className="font-semibold text-slate-900">How we price (and how we don&apos;t)</p>
           <p className="mt-2">
             Free Local forever — that&apos;s the habit loop. Pro is for one person who needs hosted sync
@@ -175,8 +175,9 @@ export default function Pricing() {
             <strong className="text-slate-900">$39/seat/mo</strong> ($29 yearly) — closer to workflow tools
             than commodity password managers, because you&apos;re buying revoke, allowlists, and audit for
             agents, not just encrypted storage. We include a generous tool-call allowance on Team; we
-            don&apos;t nickel-and-dime every <code className="rounded bg-white px-1">http_request</code> on
-            your laptop.
+            don&apos;t nickel-and-dime every{" "}
+            <code className="rounded border border-slate-200 bg-white px-1 text-slate-800">http_request</code>{" "}
+            on your laptop.
           </p>
         </div>
       </div>
