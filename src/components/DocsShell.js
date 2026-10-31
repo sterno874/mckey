@@ -6,6 +6,7 @@ const NAV = [
   { href: "/docs", label: "Technical overview" },
   { href: "/security", label: "Security whitepaper" },
   { href: "/install", label: "Install (Cursor / Claude)" },
+  { href: "/#pricing", label: "Pricing" },
 ];
 
 export default function DocsShell({ title, subtitle, children }) {

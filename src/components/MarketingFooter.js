@@ -17,11 +17,14 @@ export default function MarketingFooter() {
           <Link href="/install" className="hover:text-slate-900">
             Install
           </Link>
-          <Link href="/docs" className="hover:text-slate-900">
-            Docs
-          </Link>
+          <a href="/#pricing" className="hover:text-slate-900">
+            Pricing
+          </a>
           <Link href="/security" className="hover:text-slate-900">
             Security
+          </Link>
+          <Link href="/docs" className="hover:text-slate-900">
+            Docs
           </Link>
           <Link href="/app" className="hover:text-slate-900">
             How it works

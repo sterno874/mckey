@@ -2,6 +2,7 @@ import Link from "next/link";
 import MarketingNav from "../components/MarketingNav";
 import MarketingFooter from "../components/MarketingFooter";
 import HeroPreview from "../components/HeroPreview";
+import Pricing from "../components/Pricing";
 
 const STEPS = [
   {
@@ -50,7 +51,12 @@ const FAQS = [
     q: "Is this production-ready?",
     a: "v0.1 local vault + MCP is usable for test keys and careful workflows. Read /security before production secrets. Hosted multi-tenant gateway is later.",
   },
+  {
+    q: "How do you make money?",
+    a: "Local CLI/MCP stays free. We charge for hosted Pro ($19/mo) and Team seats ($39/seat/mo, $29 yearly) — sync, shared vaults, admin revoke, audit. Enterprise is custom. We don’t meter every laptop tool call.",
+  },
 ];
+
 
 
 export default function Home() {
@@ -277,7 +283,10 @@ export default function Home() {
           </div>
         </section>
 
+        <Pricing />
+
         <section id="faq" className="bg-[var(--bg)]">
+
           <div className="mx-auto max-w-3xl px-4 py-20 sm:px-6">
             <h2 className="text-center text-3xl font-bold sm:text-4xl">FAQ</h2>
             <div className="mt-10 divide-y divide-slate-200">
@@ -303,14 +312,16 @@ export default function Home() {
               Make the safe way as fast as pasting.
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-lg text-white/90">
-              Waitlist for hosted MCKey + Cursor install. We&apos;ll email when the gateway is ready.
+              Waitlist for hosted Pro &amp; Team. Local MCP is free today — we&apos;ll email when sync and
+              shared vaults ship.
             </p>
             <form
               className="mx-auto mt-8 flex max-w-md flex-col gap-3 sm:flex-row"
               action="mailto:hello@mckey.io"
               method="get"
             >
-              <input type="hidden" name="subject" value="MCKey waitlist" />
+              <input type="hidden" name="subject" value="MCKey Pro/Team waitlist" />
+
               <input
                 type="email"
                 name="body"
