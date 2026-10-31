@@ -49,7 +49,7 @@ export default function BlogPostPage({ params }) {
           />
         ) : null}
         <div
-          className="blog-prose mt-10 space-y-4 text-base leading-relaxed text-slate-800 [&_a]:font-semibold [&_a]:text-orange-600 [&_a]:underline [&_code]:rounded [&_code]:bg-slate-100 [&_code]:px-1 [&_code]:text-sm [&_h2]:mt-8 [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:text-slate-900 [&_li]:ml-5 [&_li]:list-disc [&_ol]:list-decimal [&_ol]:pl-5 [&_pre]:overflow-x-auto [&_pre]:rounded-xl [&_pre]:bg-slate-900 [&_pre]:p-4 [&_pre]:text-sm [&_pre]:text-slate-100 [&_ul]:space-y-1"
+          className="blog-prose mt-10 space-y-4 text-base leading-relaxed text-slate-900 [&_a]:font-semibold [&_a]:text-orange-700 [&_a]:underline [&_h2]:mt-8 [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:text-slate-900 [&_li]:ml-5 [&_li]:list-disc [&_ol]:list-decimal [&_ol]:pl-5 [&_ul]:space-y-1"
           dangerouslySetInnerHTML={{ __html: post.html }}
         />
       </article>

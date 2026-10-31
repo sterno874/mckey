@@ -250,7 +250,7 @@ export default function Home() {
               <h2 className="text-3xl font-bold sm:text-4xl">How it works + real CLI</h2>
               <p className="mt-4 text-lg leading-relaxed text-slate-600">
                 Click through vault, intercept, and inject in the browser — or run the real vault locally:{" "}
-                <code className="rounded bg-slate-100 px-1.5 py-0.5 text-sm">npx mckey init</code> then wire
+                <code>npx mckey init</code> then wire
                 Cursor / Claude Code.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">

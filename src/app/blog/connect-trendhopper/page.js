@@ -18,30 +18,29 @@ export default function ConnectTrendhopperPage() {
         <h1 className="mt-6 text-4xl font-bold">Connect Trendhopper</h1>
         <p className="mt-4 text-lg text-slate-600">
           MCKey accepts Trendhopper&apos;s signed webhook publish events and turns them into posts under{" "}
-          <code className="rounded bg-slate-100 px-1">content/blog/</code>. RSS + sitemap regenerate on
-          deploy.
+          <code>content/blog/</code>. RSS + sitemap regenerate on deploy.
         </p>
 
         <ol className="mt-10 list-decimal space-y-4 pl-5 text-slate-800">
           <li>
             <strong>Host the API on Vercel</strong> (GitHub Pages is static — no POST). Import{" "}
-            <code className="rounded bg-slate-100 px-1">sterno874/mckey</code> or claim a deploy.
+            <code>sterno874/mckey</code> or claim a deploy.
           </li>
           <li>
             In Trendhopper → <strong>Integrations → Webhook</strong>, set:
-            <pre className="mt-2 overflow-x-auto rounded-xl bg-slate-900 p-4 text-sm text-slate-100">
+            <pre className="mt-2 overflow-x-auto text-sm">
               {`https://YOUR_VERCEL_DOMAIN/api/trendhopper`}
             </pre>
           </li>
           <li>
             Copy the webhook signing secret into Vercel env:
-            <pre className="mt-2 overflow-x-auto rounded-xl bg-slate-900 p-4 text-sm text-slate-100">
+            <pre className="mt-2 overflow-x-auto text-sm">
               {`TRENDHOPPER_WEBHOOK_SECRET=…`}
             </pre>
           </li>
           <li>
             To auto-commit posts into git (so Pages + Vercel rebuild):
-            <pre className="mt-2 overflow-x-auto rounded-xl bg-slate-900 p-4 text-sm text-slate-100">
+            <pre className="mt-2 overflow-x-auto text-sm">
               {`GITHUB_TOKEN=ghp_…   # contents:write on sterno874/mckey
 GITHUB_REPO=sterno874/mckey
 GITHUB_BRANCH=main`}

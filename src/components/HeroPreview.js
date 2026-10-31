@@ -20,26 +20,26 @@ export default function HeroPreview() {
             <p className="text-[11px] font-semibold uppercase tracking-wider text-rose-600">
               Before · what people do today
             </p>
-            <p className="mt-2 font-mono text-sm leading-relaxed text-slate-700">
+            <p className="mt-2 font-mono text-sm leading-relaxed text-slate-900">
               here&apos;s the stripe key{" "}
-              <span className="rounded bg-rose-200/70 px-1 line-through decoration-rose-500/80">
+              <span className="rounded bg-rose-100 px-1.5 py-0.5 font-semibold text-rose-950 line-through decoration-rose-700 decoration-2">
                 sk_live_51Hq…
               </span>{" "}
               set up webhooks
             </p>
           </div>
 
-          <div className="rounded-xl border border-emerald-200 bg-emerald-50 px-3 py-3">
-            <p className="text-[11px] font-semibold uppercase tracking-wider text-emerald-700">
+          <div className="rounded-xl border border-emerald-300 bg-emerald-50 px-3 py-3">
+            <p className="text-[11px] font-semibold uppercase tracking-wider text-emerald-800">
               After · MCKey
             </p>
-            <p className="mt-2 font-mono text-sm leading-relaxed text-slate-800">
+            <p className="mt-2 font-mono text-sm leading-relaxed text-slate-900">
               set up stripe webhooks with{" "}
-              <span className="rounded bg-emerald-200/80 px-1 font-semibold text-emerald-900">
+              <span className="rounded bg-emerald-100 px-1.5 py-0.5 font-semibold text-emerald-950">
                 mckey://stripe
               </span>
             </p>
-            <p className="mt-2 text-xs text-emerald-800/80">
+            <p className="mt-2 text-xs font-medium text-emerald-900">
               Secret sealed in vault · agent never saw the key · gateway injects on tool call
             </p>
           </div>

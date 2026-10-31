@@ -53,14 +53,48 @@ a {
 }
 
 ::selection {
-  background: color-mix(in srgb, var(--accent) 30%, white);
+  background: #fdba74;
+  color: #0f172a;
+}
+
+/* Inline code chips — always dark text on light chip (never inherit light-on-light) */
+:where(p, li, td, th, dd, dt, span, label, summary, div) > code,
+:where(p, li, td, th, dd, dt, span, label, summary) code {
+  background: #f1f5f9;
+  color: #0f172a;
+  padding: 0.12em 0.4em;
+  border-radius: 0.35rem;
+  font-size: 0.9em;
+  border: 1px solid #e2e8f0;
+}
+
+pre {
+  background: #0f172a;
+  color: #e2e8f0;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  overflow-x: auto;
+}
+
+pre code {
+  background: transparent !important;
+  color: #e2e8f0 !important;
+  padding: 0 !important;
+  border: none !important;
+  font-size: inherit;
 }
 
 .gradient-text {
-  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  background: linear-gradient(90deg, #ea580c, #db2777);
   -webkit-background-clip: text;
   background-clip: text;
-  color: transparent;
+  color: #ea580c; /* fallback if clip unsupported */
+}
+
+@supports ((-webkit-background-clip: text) or (background-clip: text)) {
+  .gradient-text {
+    color: transparent;
+  }
 }
 
 .btn-primary {
