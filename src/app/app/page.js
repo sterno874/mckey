@@ -2,7 +2,7 @@ import Link from "next/link";
 import Prototype from "../../components/Prototype";
 
 export const metadata = {
-  title: "Prototype · MCKey",
+  title: "How it works · MCKey",
   description:
     "Paste into the vault, intercept secrets in fake agent chat, issue an MCKey, watch gateway injection.",
 };
@@ -18,7 +18,7 @@ export default function AppPage() {
             </span>
             <span className="font-[family-name:var(--font-display)] text-lg font-bold">MCKey</span>
             <span className="rounded-full bg-orange-100 px-2 py-0.5 text-[11px] font-semibold text-orange-700">
-              prototype
+              how it works
             </span>
           </Link>
           <Link href="/" className="text-sm font-medium text-slate-600 hover:text-slate-900">

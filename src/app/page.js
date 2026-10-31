@@ -238,12 +238,12 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="prototype" className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
+        <section id="how-it-works" className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
           <div className="grid items-center gap-10 lg:grid-cols-2">
             <div>
-              <h2 className="text-3xl font-bold sm:text-4xl">Browser prototype + real CLI</h2>
+              <h2 className="text-3xl font-bold sm:text-4xl">How it works + real CLI</h2>
               <p className="mt-4 text-lg leading-relaxed text-slate-600">
-                Click through intercept in the browser, or run the real vault locally:{" "}
+                Click through vault, intercept, and inject in the browser — or run the real vault locally:{" "}
                 <code className="rounded bg-slate-100 px-1.5 py-0.5 text-sm">npx mckey init</code> then wire
                 Cursor / Claude Code.
               </p>
@@ -252,7 +252,7 @@ export default function Home() {
                   Install MCP
                 </Link>
                 <Link href="/app" className="btn-secondary">
-                  Open prototype
+                  How it works
                 </Link>
               </div>
             </div>
@@ -326,7 +326,7 @@ export default function Home() {
               href="/app"
               className="mt-6 inline-flex rounded-2xl border-2 border-white px-5 py-3 font-semibold text-white hover:bg-white/10"
             >
-              Open prototype
+              How it works
             </Link>
           </div>
         </section>

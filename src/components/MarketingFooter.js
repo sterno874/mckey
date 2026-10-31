@@ -24,7 +24,7 @@ export default function MarketingFooter() {
             Security
           </Link>
           <Link href="/app" className="hover:text-slate-900">
-            Prototype
+            How it works
           </Link>
           <a href="mailto:hello@mckey.io" className="hover:text-slate-900">
             Contact

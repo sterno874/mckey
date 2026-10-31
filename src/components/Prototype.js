@@ -103,7 +103,7 @@ export default function Prototype() {
     {
       id: 1,
       at: "just now",
-      text: "Prototype loaded — paste into the vault. Chat intercept is on (toggle anytime).",
+      text: "Loaded — paste into the vault. Chat intercept is on (toggle anytime).",
     },
   ]);
 

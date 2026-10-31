@@ -29,7 +29,7 @@ export default function DocsShell({ title, subtitle, children }) {
               href="/app"
               className="block rounded-xl px-3 py-2 text-sm font-medium text-slate-500 hover:bg-white hover:text-slate-900"
             >
-              Browser prototype
+              How it works
             </Link>
           </nav>
         </aside>

@@ -45,7 +45,7 @@ npm run dev
 - Install: `/install`
 - Technical overview: `/docs`
 - Security whitepaper: `/security`
-- Browser prototype: `/app`
+- How it works (interactive): `/app`
 
 Live: [https://sterno874.github.io/mckey/](https://sterno874.github.io/mckey/)
 

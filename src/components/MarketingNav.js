@@ -23,7 +23,7 @@ export default function MarketingNav() {
             Security
           </Link>
           <Link href="/app" className="hover:text-slate-900">
-            Prototype
+            How it works
           </Link>
         </nav>
         <div className="flex items-center gap-3">
