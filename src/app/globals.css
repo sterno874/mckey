@@ -10,6 +10,8 @@
   --accent-2: #ec4899;
   --ok: #16a34a;
   --warn: #ca8a04;
+  --font-body: "DM Sans", system-ui, sans-serif;
+  --font-display: "Space Grotesk", system-ui, sans-serif;
 }
 
 @theme inline {
@@ -19,8 +21,8 @@
   --color-line: var(--line);
   --color-accent: var(--accent);
   --color-accent-2: var(--accent-2);
-  --font-sans: var(--font-body);
-  --font-display: var(--font-display);
+  --font-sans: "DM Sans", system-ui, sans-serif;
+  --font-display: "Space Grotesk", system-ui, sans-serif;
 }
 
 * {
