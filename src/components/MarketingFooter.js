@@ -35,6 +35,13 @@ export default function MarketingFooter() {
           <a href="mailto:hello@mckey.io" className="hover:text-slate-900">
             Contact
           </a>
+          <a
+            href="https://www.trendhopper.ai/?utm_source=mckey&utm_medium=referral&utm_campaign=footer"
+            className="hover:text-slate-900"
+            rel="noopener noreferrer"
+          >
+            SEO blog automation
+          </a>
         </div>
       </div>
     </footer>

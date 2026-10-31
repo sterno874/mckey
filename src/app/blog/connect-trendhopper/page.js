@@ -17,8 +17,16 @@ export default function ConnectTrendhopperPage() {
         </Link>
         <h1 className="mt-6 text-4xl font-bold">Connect Trendhopper</h1>
         <p className="mt-4 text-lg text-slate-600">
-          MCKey accepts Trendhopper&apos;s signed webhook publish events and turns them into posts under{" "}
-          <code>content/blog/</code>. RSS + sitemap regenerate on deploy.
+          MCKey accepts{" "}
+          <a
+            href="https://www.trendhopper.ai/?utm_source=mckey&utm_medium=referral&utm_campaign=connect-guide"
+            className="font-semibold text-orange-700 underline"
+            rel="noopener noreferrer"
+          >
+            Trendhopper
+          </a>
+          &apos;s signed webhook publish events and turns them into posts under <code>content/blog/</code>. RSS +
+          sitemap regenerate on deploy.
         </p>
 
         <ol className="mt-10 list-decimal space-y-4 pl-5 text-slate-800">
